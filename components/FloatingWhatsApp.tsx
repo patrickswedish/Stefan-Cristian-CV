@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { STABLE_CONFIG } from '../constants.tsx';
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
@@ -10,7 +11,7 @@ const WhatsAppIcon = () => (
 const FloatingWhatsApp: React.FC = () => {
   return (
     <a
-      href="https://wa.me/41766239131"
+      href={`https://wa.me/${STABLE_CONFIG.whatsapp.replace('+', '')}`}
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[60] flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-[#25D366] text-white rounded-full shadow-[0_15px_30px_rgba(37,211,102,0.4)] transition-all duration-300 transform hover:scale-110 active:scale-95 group overflow-hidden"

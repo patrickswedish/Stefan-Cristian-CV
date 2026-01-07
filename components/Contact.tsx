@@ -1,8 +1,9 @@
 
 import React, { useState } from 'react';
 import SectionHeading from './SectionHeading.tsx';
-import { Phone, Mail, MapPin, Send } from 'lucide-react';
+import { Send } from 'lucide-react';
 import { Translations } from '../types.ts';
+import { STABLE_CONFIG } from '../constants.tsx';
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
@@ -33,121 +34,96 @@ const Contact: React.FC<ContactProps> = ({ t }) => {
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mt-16">
           <div className="space-y-10 flex flex-col justify-center">
             <div>
-              <h3 className="text-sm font-black text-navy mb-8 tracking-[0.3em] uppercase opacity-40">{t.contact.infoTitle}</h3>
-              <p className="text-base md:text-lg text-slate-600 mb-10 leading-relaxed font-medium">
+              <h3 className="text-[11px] font-black text-navy mb-8 tracking-[0.3em] uppercase opacity-40">{t.contact.infoTitle}</h3>
+              <p className="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed font-medium">
                 {t.contact.infoDesc}
               </p>
               
-              <div className="space-y-4">
+              <div className="space-y-8">
                 <a 
-                  href="https://wa.me/41766239131" 
+                  href={`https://wa.me/${STABLE_CONFIG.whatsapp.replace('+', '')}`} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-5 p-6 rounded-3xl bg-[#25D366] text-white transition-all group hover:bg-[#1eb956] shadow-xl shadow-[#25D366]/20 relative overflow-hidden active:scale-[0.98]"
+                  className="flex items-center gap-6 p-8 rounded-[2.5rem] bg-[#25D366] text-white transition-all group hover:bg-[#1eb956] shadow-2xl shadow-[#25D366]/30 relative overflow-hidden active:scale-[0.98]"
                 >
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white/20 flex items-center justify-center flex-shrink-0 backdrop-blur-md shadow-inner">
+                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white/20 flex items-center justify-center flex-shrink-0 backdrop-blur-md shadow-inner">
                     <WhatsAppIcon />
                   </div>
                   <div className="relative z-10">
-                    <div className="text-[9px] font-black text-white/80 uppercase tracking-[0.2em] mb-0.5">{t.contact.whatsapp}</div>
-                    <div className="text-xl md:text-2xl font-black tracking-tight">+41 76 623 91 31</div>
+                    <div className="text-[10px] font-black text-white/80 uppercase tracking-[0.2em] mb-1">{t.contact.whatsapp}</div>
+                    <div className="text-2xl md:text-3xl font-black tracking-tight">{STABLE_CONFIG.phone}</div>
                   </div>
-                  <div className="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-150 transition-transform duration-700">
+                  <div className="absolute -right-6 -bottom-6 opacity-10 group-hover:scale-150 transition-transform duration-700">
                     <WhatsAppIcon />
                   </div>
                 </a>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-                  <a href="tel:0766239131" className="flex items-center gap-5 p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:border-amber-accent/30 transition-all group hover:bg-white hover:shadow-2xl active:scale-[0.98]">
-                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-navy text-amber-accent flex items-center justify-center flex-shrink-0 shadow-lg group-hover:bg-amber-accent group-hover:text-navy transition-colors">
-                      <Phone size={20} />
-                    </div>
-                    <div>
-                      <div className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-0.5">{t.contact.labels.phone}</div>
-                      <div className="text-lg md:text-xl font-black text-navy group-hover:text-amber-accent transition-colors tracking-tight">076 623 91 31</div>
-                    </div>
-                  </a>
-
-                  <a href="mailto:stefan_cristian93@yahoo.com" className="flex items-center gap-5 p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:border-amber-accent/30 transition-all group hover:bg-white hover:shadow-2xl active:scale-[0.98]">
-                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-navy text-amber-accent flex items-center justify-center flex-shrink-0 shadow-lg group-hover:bg-amber-accent group-hover:text-navy transition-colors">
-                      <Mail size={20} />
-                    </div>
-                    <div className="min-w-0">
-                      <div className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-0.5">{t.contact.labels.email}</div>
-                      <div className="text-sm md:text-base font-black text-navy group-hover:text-amber-accent transition-colors tracking-tight truncate">stefan_cristian93@yahoo.com</div>
-                    </div>
-                  </a>
-                </div>
-
-                <div className="flex items-center gap-5 p-6 rounded-3xl bg-slate-50 border border-slate-100 group">
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-navy text-amber-accent flex items-center justify-center flex-shrink-0 shadow-lg">
-                    <MapPin size={20} />
-                  </div>
-                  <div>
-                    <div className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-0.5">Aarwangen, CH</div>
-                    <div className="text-sm md:text-base font-bold text-navy/70 leading-tight">Wynauerstrasse 20, 4912</div>
-                  </div>
+                <div className="p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 flex items-center gap-6">
+                  <div className="text-amber-accent font-black text-[10px] tracking-[0.3em] uppercase vertical-text origin-center -rotate-90 hidden sm:block">Availability</div>
+                  <p className="text-slate-500 font-bold leading-relaxed text-sm">
+                    {t.contact.availabilityNote}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-navy rounded-[3rem] p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
-            <div className="absolute -top-24 -right-24 w-64 h-64 bg-amber-accent opacity-5 rounded-full blur-3xl"></div>
-            <h3 className="text-2xl md:text-3xl font-black mb-10 relative z-10 tracking-tight">{t.contact.formTitle}</h3>
-            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
+          <div className="bg-navy rounded-[3.5rem] p-10 md:p-14 text-white shadow-2xl relative overflow-hidden">
+            <div className="absolute -top-32 -right-32 w-80 h-80 bg-amber-accent opacity-5 rounded-full blur-3xl"></div>
+            <h3 className="text-3xl md:text-4xl font-black mb-10 relative z-10 tracking-tight leading-none">{t.contact.formTitle}</h3>
+            <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div className="space-y-3">
                   <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1">{t.contact.labels.name}</label>
                   <input 
                     type="text" 
                     required 
-                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-amber-accent focus:outline-none transition-all placeholder:text-slate-600 font-medium text-white" 
+                    className="w-full px-6 py-5 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-amber-accent focus:outline-none transition-all placeholder:text-slate-600 font-bold text-white text-sm" 
                     placeholder="Jane Smith" 
                     value={formData.name} 
                     onChange={(e) => setFormData({...formData, name: e.target.value})} 
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1">{t.contact.labels.company}</label>
                   <input 
                     type="text" 
-                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-amber-accent focus:outline-none transition-all placeholder:text-slate-600 font-medium text-white" 
+                    className="w-full px-6 py-5 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-amber-accent focus:outline-none transition-all placeholder:text-slate-600 font-bold text-white text-sm" 
                     placeholder="Logistics AG" 
                     value={formData.company} 
                     onChange={(e) => setFormData({...formData, company: e.target.value})} 
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div className="space-y-3">
                   <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1">{t.contact.labels.email}</label>
                   <input 
                     type="email" 
                     required 
-                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-amber-accent focus:outline-none transition-all placeholder:text-slate-600 font-medium text-white" 
+                    className="w-full px-6 py-5 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-amber-accent focus:outline-none transition-all placeholder:text-slate-600 font-bold text-white text-sm" 
                     placeholder="hr@logistics.ch" 
                     value={formData.email} 
                     onChange={(e) => setFormData({...formData, email: e.target.value})} 
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1">{t.contact.labels.phone}</label>
                   <input 
                     type="tel" 
-                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-amber-accent focus:outline-none transition-all placeholder:text-slate-600 font-medium text-white" 
+                    className="w-full px-6 py-5 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-amber-accent focus:outline-none transition-all placeholder:text-slate-600 font-bold text-white text-sm" 
                     placeholder="+41..." 
                     value={formData.phone} 
                     onChange={(e) => setFormData({...formData, phone: e.target.value})} 
                   />
                 </div>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1">{t.contact.labels.message}</label>
                 <textarea 
                   rows={4} 
                   required 
-                  className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-amber-accent focus:outline-none transition-all placeholder:text-slate-600 font-medium text-white resize-none" 
+                  className="w-full px-6 py-5 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-amber-accent focus:outline-none transition-all placeholder:text-slate-600 font-bold text-white text-sm resize-none" 
                   placeholder="Inquiry details..." 
                   value={formData.message} 
                   onChange={(e) => setFormData({...formData, message: e.target.value})}
@@ -155,7 +131,7 @@ const Contact: React.FC<ContactProps> = ({ t }) => {
               </div>
               <button 
                 type="submit" 
-                className="w-full py-5 bg-amber-accent hover:bg-amber-600 text-navy font-black rounded-2xl flex items-center justify-center gap-4 transition-all shadow-xl active:scale-95 text-xs uppercase tracking-[0.3em]"
+                className="w-full py-6 bg-amber-accent hover:bg-amber-600 text-navy font-black rounded-2xl flex items-center justify-center gap-4 transition-all shadow-2xl shadow-amber-accent/20 active:scale-95 text-[11px] uppercase tracking-[0.3em]"
               >
                 {t.contact.submit}
                 <Send size={18} />

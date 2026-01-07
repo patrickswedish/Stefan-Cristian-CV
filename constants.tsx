@@ -6,8 +6,8 @@
 export const STABLE_CONFIG = {
   name: "Stefan Cristian",
   email: "stefan_cristian93@yahoo.com",
-  phone: "076 623 91 31",
-  whatsapp: "+41766239131",
+  phone: "078 214 48 93",
+  whatsapp: "+41782144893",
   address: "Wynauerstrasse 20, 4912 Aarwangen, Switzerland",
   dob: "21 November 1974",
 };

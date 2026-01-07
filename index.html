@@ -3,7 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-    <title>Stefan Cristian | Professional Chauffeur & Truck Driver</title>
+    <title>Stefan Cristian | Professional Chauffeur & Truck Driver (Cat. CE)</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Professional Chauffeur & Truck Driver Portfolio - Stefan Cristian. 22+ years of accident-free international experience. Expert in Cat. CE and ADR logistics. Based in Switzerland." />
+    <meta name="keywords" content="Stefan Cristian, Professional Chauffeur, Truck Driver, Cat CE, ADR, Logistics, Switzerland, International Transport, Trucker CV, Professional Driver Portfolio, Aarwangen" />
+    <meta name="author" content="Stefan Cristian" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://stefancristian.ch/" />
+    <meta property="og:title" content="Stefan Cristian | Professional Chauffeur & Truck Driver" />
+    <meta property="og:description" content="22+ years of accident-free international logistics experience. Reliable, precise, and professional driver based in Switzerland." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://stefancristian.ch/" />
+    <meta property="twitter:title" content="Stefan Cristian | Professional Chauffeur & Truck Driver" />
+    <meta property="twitter:description" content="22+ years of accident-free international logistics experience. Reliable, precise, and professional driver based in Switzerland." />
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80" />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Person",
+      "name": "Stefan Cristian",
+      "jobTitle": "Professional Chauffeur & Truck Driver",
+      "url": "https://stefancristian.ch/",
+      "image": "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Aarwangen",
+        "addressRegion": "Bern",
+        "postalCode": "4912",
+        "addressCountry": "CH"
+      },
+      "description": "Professional driver with over 22 years of accident-free experience in international heavy transport and specialized logistics.",
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Driving License Category CE",
+          "name": "Cat. CE Driver's License"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "ADR Certificate",
+          "name": "ADR Basic Logistics Certification"
+        }
+      ],
+      "knowsLanguage": ["Romanian", "German", "English", "Italian", "French", "Spanish"]
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,11 +72,16 @@
             },
             animation: {
               'fade-in': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'slide-in': 'slideIn 0.4s ease-out forwards',
             },
             keyframes: {
               fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(30px)' },
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              slideIn: {
+                '0%': { opacity: '0', transform: 'translateX(20px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' },
               }
             }
           }
@@ -30,6 +89,9 @@
       }
     </script>
     <style>
+      :root {
+        --header-height: 80px;
+      }
       body {
         font-family: 'Inter', sans-serif;
         scroll-behavior: smooth;
@@ -61,11 +123,15 @@
         border: 1px solid rgba(255, 255, 255, 0.1);
       }
       ::-webkit-scrollbar { width: 8px; }
-      ::-webkit-scrollbar-track { background: #f1f1f1; }
+      ::-webkit-scrollbar-track { background: #f8fafc; }
       ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
       ::-webkit-scrollbar-thumb:hover { background: #F59E0B; }
+      
+      .mobile-menu-enter {
+        animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
     </style>
-  <script type="importmap">
+    <script type="importmap">
 {
   "imports": {
     "react": "https://esm.sh/react@19.0.0",
@@ -77,8 +143,8 @@
   }
 }
 </script>
-</head>
-  <body class="bg-[#F8FAFC] text-slate-800 overflow-x-hidden">
+  </head>
+  <body class="bg-[#F8FAFC] text-slate-800 selection:bg-amber-accent selection:text-navy">
     <div id="root"></div>
     <script type="module" src="./index.tsx"></script>
   </body>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Header from './components/Header.tsx';
 import Hero from './components/Hero.tsx';
 import About from './components/About.tsx';
@@ -14,24 +14,42 @@ import { TRANSLATIONS } from './translations.ts';
 
 const App: React.FC = () => {
   const [lang, setLang] = useState<LanguageCode>('de');
-  const t = TRANSLATIONS[lang] || TRANSLATIONS['de'];
+  
+  // Safe translation retrieval
+  const getT = (l: LanguageCode) => TRANSLATIONS[l] || TRANSLATIONS['de'];
+  const t = getT(lang);
 
-  // Optional: Auto-detect language or use local storage
+  // Initialize from storage or detect browser language
   useEffect(() => {
     const saved = localStorage.getItem('stefan-cv-lang') as LanguageCode;
     if (saved && TRANSLATIONS[saved]) {
       setLang(saved);
+    } else {
+      const browserLang = navigator.language.split('-')[0] as LanguageCode;
+      if (TRANSLATIONS[browserLang]) {
+        setLang(browserLang);
+      }
     }
   }, []);
 
-  const changeLanguage = (newLang: LanguageCode) => {
-    setLang(newLang);
-    localStorage.setItem('stefan-cv-lang', newLang);
-  };
+  const changeLanguage = useCallback((newLang: LanguageCode) => {
+    if (TRANSLATIONS[newLang]) {
+      setLang(newLang);
+      localStorage.setItem('stefan-cv-lang', newLang);
+      
+      // Update document attributes for accessibility and SEO
+      document.documentElement.lang = newLang;
+      
+      // Smooth scroll back to top if language changes significantly? 
+      // User might prefer staying in place, so we won't force scroll.
+    }
+  }, []);
 
   return (
-    <div className="flex flex-col min-h-screen relative">
+    <div className="flex flex-col min-h-screen relative bg-[#F8FAFC]">
+      {/* Header with language switcher and hamburger menu */}
       <Header currentLang={lang} onLangChange={changeLanguage} t={t} />
+      
       <main className="flex-grow">
         <Hero t={t} />
         <About t={t} />
@@ -41,7 +59,10 @@ const App: React.FC = () => {
         <Languages t={t} />
         <Contact t={t} />
       </main>
+      
       <Footer t={t} />
+      
+      {/* Persistant floating contact component */}
       <FloatingWhatsApp />
     </div>
   );
